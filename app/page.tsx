@@ -1,5 +1,14 @@
+"use client"
+import { useState } from "react";
+import Card from "./components/Card";
+
 export default function Home() {
-  const numberOfVotes = 0;
+  const [dogeVotes, setDogeVotes] = useState<number>(0)
+
+  const handleVote = () => {
+    setDogeVotes(dogeVotes + 1)
+  }
+
   const candidates = ["Doge", "Oh Long Johnson", "Grumpy Cat"];
   const candidatesInfo = [
     {
@@ -21,30 +30,19 @@ export default function Home() {
   return (
     <div>
       <h1>DOGE DON'T WORRY WE'RE GONNA BEAT OH LONG JOHNSON!</h1>
-      <h1>Number of votes: {numberOfVotes}</h1>
+      <h1 className="text-3xl font-bold">Number of votes for Doge: {dogeVotes}</h1>
       <h2>Candidates:</h2>
       <ul>
         {candidates.map((candidate) => <li>{candidate}</li>)}
       </ul>
       {
-        candidatesInfo.map((candidateInfo, index) => <Card {...candidateInfo} key={index}/>)
+        candidatesInfo.map((candidateInfo, index) => <Card {...candidateInfo} key={index} />)
       }
+      <button
+        className="p-4 bg-blue-500 text-white rounded-md mt-4 hover:bg-blue-600"
+        onClick={handleVote}>
+        Vote for Doge
+      </button>
     </div>
   );
-}
-
-
-const Card = ({ image, candidateName, numberOfVotes }: { image: string, candidateName: string, numberOfVotes: number }) => {
-  return (
-    <div className="p-4 bg-white border-2 shadow-lg shadow-gray-100 flex flex-row items-center justify-between w-[400px]">
-      <div className="max-w-48">
-        <img src={image} alt={candidateName} />
-      </div>
-      <div className="flex flex-col gap-3">
-        <h2 className="text-blue-100 font-bold text-xl">{candidateName}</h2>
-        <p className="text-gray-300">Votes: {numberOfVotes}</p>
-      </div>
-
-    </div>
-  )
 }
