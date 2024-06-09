@@ -27,7 +27,7 @@ export default function Home() {
         {candidates.map((candidate) => <li>{candidate}</li>)}
       </ul>
       {
-        candidatesInfo.map((candidateInfo) => <Card {...candidateInfo} />)
+        candidatesInfo.map((candidateInfo, index) => <Card {...candidateInfo} key={index}/>)
       }
     </div>
   );
@@ -36,7 +36,7 @@ export default function Home() {
 
 const Card = ({ image, candidateName, numberOfVotes }: { image: string, candidateName: string, numberOfVotes: number }) => {
   return (
-    <div className="p-4 bg-slate-100 border-1 shadow-slate-50 flex flex-row items-center justify-center w-[400px]">
+    <div className="p-4 bg-white border-2 shadow-lg shadow-gray-100 flex flex-row items-center justify-between w-[400px]">
       <div className="max-w-48">
         <img src={image} alt={candidateName} />
       </div>
